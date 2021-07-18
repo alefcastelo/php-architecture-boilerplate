@@ -1,11 +1,8 @@
 ### Subscriber Retrieve
 GET http://localhost:8000/subscriber/4
-Accept: application/json
 
 ### Subscriber Create
 POST http://localhost:8000/subscriber
-Content-Type: application/json
-Accept: application/json
 
 {
   "firstName": "Alef",
@@ -15,8 +12,6 @@ Accept: application/json
 
 ### Subscriber Update
 POST http://localhost:8000/subscriber/4
-Content-Type: application/json
-Accept: application/json
 
 {
   "firstName": "Alef",
@@ -25,4 +20,12 @@ Accept: application/json
 
 ### Subscriber List
 GET http://localhost:8000/subscriber
-Accept: application/json
+
+
+### Subscriber Create
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "{\nhealthcheck {\nstatus\ntime\n}\n}"
+}

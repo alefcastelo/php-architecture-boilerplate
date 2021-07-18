@@ -1,3 +1,8 @@
+graphql:
+    path: /graphql
+    controller: Descarga\Rest\Action\GraphQLAction
+    methods: POST
+
 healthcheck:
     path: /
     controller: Descarga\Rest\Action\HealthCheckAction

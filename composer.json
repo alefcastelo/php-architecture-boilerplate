@@ -18,7 +18,8 @@
         "symfony/maker-bundle": "^1.33",
         "symfony/proxy-manager-bridge": "5.3.*",
         "symfony/runtime": "5.3.*",
-        "symfony/yaml": "5.3.*"
+        "symfony/yaml": "5.3.*",
+        "webonyx/graphql-php": "^14.9"
     },
     "config": {
         "optimize-autoloader": true,

@@ -1,0 +1,55 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    healthcheck: Healthcheck
+    subscriberRetrieve: SubscriberFullOutput
+    subscriberList(input: SubscriberListFiltersInput): SubscriberListOutput
+}
+
+type Mutation {
+    subscriberCreate(input: SubscriberCreateInput): SubscriberFullOutput
+    subscriberUpdate(input: SubscriberUpdateInput): SubscriberFullOutput
+}
+
+type Healthcheck {
+    time: Int!
+    status: String!
+}
+
+input SubscriberCreateInput {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+}
+
+input SubscriberUpdateInput {
+    id: ID!
+    firstName: String
+    lastName: String
+}
+
+input SubscriberListFiltersInput {
+    page: Int
+    limit: Int
+}
+
+type SubscriberFullOutput {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+}
+
+type SubscriberPartialOutput {
+    id: ID!
+    firstName: String!
+    lastName: String!
+}
+
+type SubscriberListOutput {
+    items: [SubscriberPartialOutput]
+}

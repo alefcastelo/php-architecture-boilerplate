@@ -5,6 +5,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            $graphqlSchemaPath: '%env(resolve:GRAPHQL_SCHEMA_PATH)%'
 
     Descarga\:
         resource: '../src/'
@@ -15,3 +17,9 @@ services:
     Descarga\Rest\Action\:
         resource: '../src/Rest/Action/'
         tags: [ 'controller.service_arguments' ]
+
+    Descarga\GraphQL\:
+        resource: '../src/GraphQL/'
+        exclude:
+            - '../src/GraphQL/Config/'
+        tags: [ 'graphql.resolvers' ]
