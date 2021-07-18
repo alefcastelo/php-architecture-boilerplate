@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Descarga\Subscriber\Repository;
 
 use Descarga\Shared\Exception\DomainLogicException;
-use Descarga\Shared\Validator\Exception\ValidatorException;
 use Descarga\Subscriber\Entity\Subscriber;
 use Descarga\Subscriber\SubscriberRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -22,7 +21,7 @@ class SubscriberPostgresRepository extends ServiceEntityRepository implements Su
     public function findOneById(int $id): Subscriber
     {
         return $this->findOneBy([
-            'id' => $id
+            'id' => $id,
         ]);
     }
 
@@ -43,11 +42,7 @@ class SubscriberPostgresRepository extends ServiceEntityRepository implements Su
             $this->getEntityManager()->persist($subscriber);
             $this->getEntityManager()->flush();
         } catch (Throwable $exception) {
-            throw new DomainLogicException(
-                'Subscriber could not be created.',
-                0,
-                $exception
-            );
+            throw new DomainLogicException('Subscriber could not be created.', 0, $exception);
         }
     }
 
@@ -57,11 +52,7 @@ class SubscriberPostgresRepository extends ServiceEntityRepository implements Su
             $this->getEntityManager()->persist($subscriber);
             $this->getEntityManager()->flush();
         } catch (Throwable $exception) {
-            throw new DomainLogicException(
-                'Subscriber could not be updated.',
-                0,
-                $exception
-            );
+            throw new DomainLogicException('Subscriber could not be updated.', 0, $exception);
         }
     }
 

@@ -8,3 +8,8 @@ Accept: application/json
   "lastName": "Castelo",
   "email": "alefaraujocastelo@gmail.com"
 }
+
+
+### Retrieving a subscriber
+GET http://localhost:8000/subscriber/4
+Accept: application/json
