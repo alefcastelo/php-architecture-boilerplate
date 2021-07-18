@@ -6,6 +6,7 @@ namespace Descarga\Subscriber\Repository;
 
 use Descarga\Shared\Exception\DomainLogicException;
 use Descarga\Subscriber\Entity\Subscriber;
+use Descarga\Subscriber\Input\SubscriberListFiltersInput;
 use Descarga\Subscriber\SubscriberRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -56,8 +57,13 @@ class SubscriberPostgresRepository extends ServiceEntityRepository implements Su
         }
     }
 
-    public function list(Subscriber $subscriber): void
+    public function list(SubscriberListFiltersInput $filters): array
     {
-        // TODO: Implement list() method.
+        return $this->createQueryBuilder('s')
+            ->setFirstResult(--$filters->page * $filters->limit)
+            ->setMaxResults($filters->limit)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

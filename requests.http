@@ -1,3 +1,7 @@
+### Subscriber Retrieve
+GET http://localhost:8000/subscriber/4
+Accept: application/json
+
 ### Subscriber Create
 POST http://localhost:8000/subscriber
 Content-Type: application/json
@@ -9,11 +13,6 @@ Accept: application/json
   "email": "alefaraujocastelo@gmail.com"
 }
 
-
-### Subscriber Retrieve
-GET http://localhost:8000/subscriber/4
-Accept: application/json
-
 ### Subscriber Update
 POST http://localhost:8000/subscriber/4
 Content-Type: application/json
@@ -23,3 +22,7 @@ Accept: application/json
   "firstName": "Alef",
   "lastName": "Araujo"
 }
+
+### Subscriber List
+GET http://localhost:8000/subscriber
+Accept: application/json

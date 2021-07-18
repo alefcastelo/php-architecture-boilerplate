@@ -6,9 +6,9 @@ namespace Descarga\Subscriber\Input;
 
 class SubscriberListFiltersInput
 {
-    public mixed $page = 1;
+    public mixed $page;
 
-    public mixed $limit = 10;
+    public mixed $limit;
 
     public function __construct(
         mixed $page,
@@ -18,7 +18,7 @@ class SubscriberListFiltersInput
         $this->limit = $limit;
     }
 
-    public function createFromArray(array $query = []): self
+    public static function createFromArray(array $query = []): self
     {
         return new self(
             $query['page'] ?? 1,

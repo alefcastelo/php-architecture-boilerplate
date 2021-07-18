@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Descarga\Subscriber;
 
 use Descarga\Subscriber\Entity\Subscriber;
+use Descarga\Subscriber\Input\SubscriberListFiltersInput;
 
 interface SubscriberRepositoryInterface
 {
@@ -14,5 +15,5 @@ interface SubscriberRepositoryInterface
 
     public function update(Subscriber $subscriber): void;
 
-    public function list(Subscriber $subscriber): void;
+    public function list(SubscriberListFiltersInput $filters): array;
 }

@@ -2,17 +2,22 @@ healthcheck:
     path: /
     controller: Descarga\Rest\Action\HealthCheckAction
 
-subscriber_create:
-    path: /subscriber
-    methods: [POST]
-    controller: Descarga\Rest\Action\Subscriber\SubscriberCreateAction
-
 subscriber_retrieve:
     path: /subscriber/{id}
     methods: [GET]
     controller: Descarga\Rest\Action\Subscriber\SubscriberRetrieveAction
 
+subscriber_create:
+    path: /subscriber
+    methods: [POST]
+    controller: Descarga\Rest\Action\Subscriber\SubscriberCreateAction
+
 subscriber_update:
     path: /subscriber/{id}
     methods: [POST]
     controller: Descarga\Rest\Action\Subscriber\SubscriberUpdateAction
+
+subscriber_list:
+    path: /subscriber
+    methods: [GET]
+    controller: Descarga\Rest\Action\Subscriber\SubscriberListAction
