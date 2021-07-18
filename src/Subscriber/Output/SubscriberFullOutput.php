@@ -6,6 +6,8 @@ namespace Descarga\Subscriber\Output;
 
 class SubscriberFullOutput
 {
+    public int $id;
+
     public string $firstName;
 
     public string $lastName;

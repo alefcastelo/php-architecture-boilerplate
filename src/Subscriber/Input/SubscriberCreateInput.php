@@ -22,7 +22,7 @@ class SubscriberCreateInput
         $this->email = $email;
     }
 
-    public function createFromArray(array $data = []): self
+    public static function createFromArray(array $data = []): self
     {
         return new self(
             $data['firstName'] ?? null,

@@ -13,6 +13,7 @@ class SubscriberFullOutputMapper
     {
         $output = new SubscriberFullOutput();
 
+        $output->id = $subscriber->getId();
         $output->firstName = $subscriber->getFirstName();
         $output->lastName = $subscriber->getLastName();
         $output->email = $subscriber->getEmail();

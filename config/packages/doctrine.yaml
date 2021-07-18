@@ -8,6 +8,7 @@ doctrine:
         mappings:
             Descarga\Subscriber:
                 is_bundle: false
-                type: annotation
+                type: attribute
                 dir: '%kernel.project_dir%/src/Subscriber/Entity'
                 prefix: 'Descarga\Subscriber\Entity'
+

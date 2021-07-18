@@ -22,7 +22,7 @@ class SubscriberCreate
     public function handler(SubscriberCreateInput $input): SubscriberFullOutput
     {
         $subscriber = $this->subscriberCreateInputMapper->map($input);
-        $subscriber = $this->subscriberRepository->create($subscriber);
+        $this->subscriberRepository->create($subscriber);
 
         return $this->subscriberFullOutputMapper->map($subscriber);
     }

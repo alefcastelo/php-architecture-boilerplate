@@ -1,0 +1,10 @@
+### Creating a subscriber
+POST http://localhost:8000/subscriber
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Alef",
+  "lastName": "Castelo",
+  "email": "alefaraujocastelo@gmail.com"
+}

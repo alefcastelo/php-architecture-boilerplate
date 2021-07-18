@@ -6,13 +6,12 @@ services:
         autowire: true
         autoconfigure: true
 
-
-    Descarga\Rest\Action\:
-        resource: '../src/Rest/Action/'
-        tags: ['controller.service_arguments']
-
     Descarga\:
         resource: '../src/'
         exclude:
             - '../src/**/Entity/'
             - '../src/Kernel.php'
+
+    Descarga\Rest\Action\:
+        resource: '../src/Rest/Action/'
+        tags: [ 'controller.service_arguments' ]

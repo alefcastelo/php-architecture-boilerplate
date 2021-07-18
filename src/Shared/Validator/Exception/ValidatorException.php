@@ -28,6 +28,6 @@ class ValidatorException extends RuntimeException implements ResponseException
 
     public function getResponseException(): Response
     {
-        return new JsonResponse($this->errors);
+        return new JsonResponse($this->errors, Response::HTTP_BAD_REQUEST);
     }
 }
