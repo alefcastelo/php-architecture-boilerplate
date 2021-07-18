@@ -1,6 +1,6 @@
 <?php
 
-use Descarga\CMS\Kernel;
+use Descarga\Kernel;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

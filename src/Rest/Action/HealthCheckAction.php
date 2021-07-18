@@ -1,6 +1,6 @@
 <?php
 
-namespace Descarga\CMS\Rest\Action;
+namespace Descarga\Rest\Action;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 

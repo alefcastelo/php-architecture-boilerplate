@@ -1,6 +1,6 @@
 <?php
 
-namespace Descarga\CMS;
+namespace Descarga;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

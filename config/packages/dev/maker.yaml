@@ -1,0 +1,2 @@
+maker:
+  root_namespace: '%env(resolve:ROOT_NAMESPACE)%'
