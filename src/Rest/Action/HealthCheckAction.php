@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Descarga\Rest\Action;
 
 use Symfony\Component\HttpFoundation\JsonResponse;

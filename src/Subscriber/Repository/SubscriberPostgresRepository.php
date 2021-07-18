@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Descarga\Subscriber\Repository;
 
 use Descarga\Subscriber\Entity\Subscriber;

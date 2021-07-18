@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Descarga\Subscriber\Entity;
 
 use Descarga\Subscriber\Repository\SubscriberPostgresRepository;
@@ -11,15 +13,13 @@ class Subscriber
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    protected int|null $id = null;
+    protected int | null $id = null;
 
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
         protected string $firstName,
-
         #[ORM\Column(type: 'string', length: 255)]
         protected string $lastName,
-
         #[ORM\Column(type: 'string', length: 255)]
         protected string $email
     ) {
