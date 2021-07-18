@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Descarga\\CMS\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Descarga\\CMS\\": "tests/"
         }
     },
     "replace": {
