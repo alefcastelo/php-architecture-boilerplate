@@ -1,4 +1,4 @@
-### Creating a subscriber
+### Subscriber Create
 POST http://localhost:8000/subscriber
 Content-Type: application/json
 Accept: application/json
@@ -10,6 +10,16 @@ Accept: application/json
 }
 
 
-### Retrieving a subscriber
+### Subscriber Retrieve
 GET http://localhost:8000/subscriber/4
 Accept: application/json
+
+### Subscriber Update
+POST http://localhost:8000/subscriber/4
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Alef",
+  "lastName": "Araujo"
+}

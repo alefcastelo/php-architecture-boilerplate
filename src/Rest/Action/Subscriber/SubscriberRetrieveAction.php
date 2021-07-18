@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Descarga\Rest\Action\Subscriber;
 
-use Descarga\Subscriber\Input\SubscriberCreateInput;
 use Descarga\Subscriber\Output\Mapper\SubscriberFullOutputMapper;
 use Descarga\Subscriber\SubscriberRepositoryInterface;
-use Descarga\Subscriber\UseCase\SubscriberCreate;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 

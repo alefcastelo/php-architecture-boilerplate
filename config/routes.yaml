@@ -11,3 +11,8 @@ subscriber_retrieve:
     path: /subscriber/{id}
     methods: [GET]
     controller: Descarga\Rest\Action\Subscriber\SubscriberRetrieveAction
+
+subscriber_update:
+    path: /subscriber/{id}
+    methods: [POST]
+    controller: Descarga\Rest\Action\Subscriber\SubscriberUpdateAction
