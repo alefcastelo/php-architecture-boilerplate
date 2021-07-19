@@ -22,10 +22,32 @@ POST http://localhost:8000/subscriber/4
 GET http://localhost:8000/subscriber
 
 
-### Subscriber Create
+### GraphQL Healthcheck Resolver
 POST http://localhost:8000/graphql
 Content-Type: application/graphql
 
 {
   "query": "{\nhealthcheck {\nstatus\ntime\n}\n}"
+}
+
+### GraphQL Subscriber Retrieve Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "{\nsubscriberRetrieve(id: 3) {\nid\nfirstName\nlastName\nemail\n}\n}"
+}
+
+### GraphQL Subscriber List Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "query SubscriberList($input: SubscriberListFiltersInput){\nsubscriberList(input: $input) {\nitems {\nid\nfirstName\nlastName\n}\n}\n}",
+  "variables": {
+    "input": {
+      "page": 1,
+      "limit": 2
+    }
+  }
 }

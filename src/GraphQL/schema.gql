@@ -5,7 +5,7 @@ schema {
 
 type Query {
     healthcheck: Healthcheck
-    subscriberRetrieve: SubscriberFullOutput
+    subscriberRetrieve(id: Int!): SubscriberFullOutput
     subscriberList(input: SubscriberListFiltersInput): SubscriberListOutput
 }
 
@@ -20,14 +20,14 @@ type Healthcheck {
 }
 
 input SubscriberCreateInput {
-    id: ID!
+    id: Int!
     firstName: String!
     lastName: String!
     email: String!
 }
 
 input SubscriberUpdateInput {
-    id: ID!
+    id: Int!
     firstName: String
     lastName: String
 }
@@ -38,14 +38,14 @@ input SubscriberListFiltersInput {
 }
 
 type SubscriberFullOutput {
-    id: ID!
+    id: Int!
     firstName: String!
     lastName: String!
     email: String!
 }
 
 type SubscriberPartialOutput {
-    id: ID!
+    id: Int!
     firstName: String!
     lastName: String!
 }

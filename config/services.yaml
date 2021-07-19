@@ -20,6 +20,4 @@ services:
 
     Descarga\GraphQL\:
         resource: '../src/GraphQL/'
-        exclude:
-            - '../src/GraphQL/Config/'
         tags: [ 'graphql.resolvers' ]
