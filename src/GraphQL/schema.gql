@@ -10,8 +10,8 @@ type Query {
 }
 
 type Mutation {
-    subscriberCreate(input: SubscriberCreateInput): SubscriberFullOutput
-    subscriberUpdate(input: SubscriberUpdateInput): SubscriberFullOutput
+    subscriberCreate(input: SubscriberCreateInput!): SubscriberFullOutput
+    subscriberUpdate(id: Int!, input: SubscriberUpdateInput!): SubscriberFullOutput
 }
 
 type Healthcheck {
@@ -20,14 +20,12 @@ type Healthcheck {
 }
 
 input SubscriberCreateInput {
-    id: Int!
     firstName: String!
     lastName: String!
     email: String!
 }
 
 input SubscriberUpdateInput {
-    id: Int!
     firstName: String
     lastName: String
 }

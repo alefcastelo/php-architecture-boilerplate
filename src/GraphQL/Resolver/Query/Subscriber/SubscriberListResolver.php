@@ -21,7 +21,7 @@ class SubscriberListResolver implements Resolver
     public function resolve($rootValue, array $args, Context $context): array
     {
         $input = SubscriberListFiltersInput::createFromArray([
-            'page' => $args['input']['page']?? 1,
+            'page' => $args['input']['page'] ?? 1,
             'limit' => $args['input']['limit'] ?? 10,
         ]);
 

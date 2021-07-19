@@ -51,3 +51,47 @@ Content-Type: application/graphql
     }
   }
 }
+
+### GraphQL Subscriber List Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "query SubscriberList($input: SubscriberListFiltersInput){\nsubscriberList(input: $input) {\nitems {\nid\nlastName\n}\n}\n}",
+  "variables": {
+    "input": {
+      "page": 1,
+      "limit": 2
+    }
+  }
+}
+
+### GraphQL Subscriber Create Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "mutation SubscriberCreate($input: SubscriberCreateInput!){\nsubscriberCreate(input: $input) {\nid\nfirstName\nlastName\nemail\n}\n}",
+  "variables": {
+    "input": {
+      "firstName": "Alef",
+      "lastName": "Castelo",
+      "email": "alef@gmail.com"
+    }
+  }
+}
+
+### GraphQL Subscriber Update Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "mutation SubscriberUpdate($id: Int!, $input: SubscriberUpdateInput!){\nsubscriberUpdate(id: $id, input: $input) {\nid\nfirstName\nlastName\nemail\n}\n}",
+  "variables": {
+    "id": 1,
+    "input": {
+      "firstName": "Alef",
+      "lastName": "Araujo"
+    }
+  }
+}
