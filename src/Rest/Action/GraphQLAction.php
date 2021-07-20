@@ -13,7 +13,22 @@ use GraphQL\Utils\BuildSchema;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Post(
+ *     path="/graphql",
+ *     summary="Subscriber Create",
+ *     tags={"GraphQL"},
+ *     @OA\RequestBody(
+ *         description="Input graphql query format"
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Ok"
+ *     )
+ * )
+ */
 class GraphQLAction
 {
     protected RootValue $rootValue;

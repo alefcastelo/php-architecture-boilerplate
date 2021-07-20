@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: 'Descarga API'
+  version: '0.1'
+servers:
+  -
+    url: 'http://localhost:8000'
+    description: Local
+paths:
+  /graphql:
+    post:
+      tags:
+        - GraphQL
+      summary: 'Subscriber Create'
+      requestBody:
+        description: 'Input graphql query format'
+      responses:
+        '200':
+          description: Ok
+  /:
+    get:
+      tags:
+        - App
+      summary: 'Subscriber Create'
+      responses:
+        '200':
+          description: Ok
+  /subscribers:
+    get:
+      tags:
+        - Subscriber
+      summary: 'Subscriber List'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberListOutput'
+    post:
+      tags:
+        - Subscriber
+      summary: 'Subscriber Create'
+      requestBody:
+        description: 'Input data format'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriberCreateInput'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberFullOutput'
+  '/subscribers/{id}':
+    get:
+      tags:
+        - Subscriber
+      summary: 'Subscriber Retrieve'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberFullOutput'
+    put:
+      tags:
+        - Subscriber
+      summary: 'Subscriber Update'
+      requestBody:
+        description: 'Input data format'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriberUpdateInput'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriberFullOutput'
+components:
+  schemas:
+    SubscriberCreateInput:
+      required:
+        - firstName
+        - lastName
+        - email
+      properties:
+        firstName:
+          example: Alef
+        lastName:
+          example: Castelo
+        email:
+          example: alefaraujocastelo@gmail.com
+      type: object
+    SubscriberUpdateInput:
+      required:
+        - firstName
+        - lastName
+      properties:
+        firstName:
+          example: Alef
+        lastName:
+          example: Castelo
+      type: object
+    SubscriberFullOutput:
+      properties:
+        id:
+          type: integer
+          example: Alef
+        firstName:
+          type: string
+          example: Alef
+        lastName:
+          type: string
+          example: Castelo
+        email:
+          type: string
+          example: alefaraujocastelo@gmail.com
+      type: object
+    SubscriberListOutput:
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriberPartialOutput'
+      type: object
+    SubscriberPartialOutput:
+      properties:
+        id:
+          type: integer
+          example: Alef
+        firstName:
+          type: string
+          example: Alef
+        lastName:
+          type: string
+          example: Castelo
+      type: object
+tags:
+  -
+    name: App
+  -
+    name: GraphQL
+  -
+    name: Subscriber

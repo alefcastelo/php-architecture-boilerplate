@@ -8,7 +8,24 @@ use Descarga\Subscriber\Input\SubscriberCreateInput;
 use Descarga\Subscriber\UseCase\SubscriberCreate;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Post(
+ *     path="/subscribers",
+ *     summary="Subscriber Create",
+ *     tags={"Subscriber"},
+ *     @OA\RequestBody(
+ *         description="Input data format",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberCreateInput"),
+ *     ),
+ *     @OA\Response(
+ *         response=201,
+ *         description="Created",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberFullOutput"),
+ *     )
+ * )
+ */
 class SubscriberCreateAction
 {
     public function __construct(

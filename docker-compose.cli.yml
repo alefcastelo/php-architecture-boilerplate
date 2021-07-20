@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  composer:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    image: local/composer:latest
+    init: true
+    volumes:
+      - .:/application:delegated
+      - ~/.composer/auth.json:/root/.composer/auth.json:delegated
+      - composer-cache:/root/.composer/cache:cached
+    depends_on:
+      - database
+    entrypoint:
+      - composer
+    env_file:
+      - .env
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    image: local/api:latest
+    init: true
+    privileged: true
+    volumes:
+      - .:/application:delegated
+      - composer-cache:/root/.composer/cache:cached
+    depends_on:
+      - database
+    env_file:
+      - .env
+
+  database:
+    image: postgres:9.6
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=phparch
+      - POSTGRES_USER=phparch
+      - POSTGRES_PASSWORD=s3cr3t
+
+volumes:
+  composer-cache: ~
+  database-data:
+    external: true

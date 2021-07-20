@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    image: local/api:latest
+    links:
+      - database
+    env_file:
+      - .env
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: local/nginx:latest
+    ports:
+      - 8000:80
+    links:
+      - api
+    depends_on:
+      - api
+
+  database:
+    image: postgres:9.6
+    ports:
+      - 5432:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=phparch
+      - POSTGRES_USER=phparch
+      - POSTGRES_PASSWORD=s3cr3t
+
+volumes:
+  database-data:
+    external: true

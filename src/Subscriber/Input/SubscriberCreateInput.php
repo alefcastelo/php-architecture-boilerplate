@@ -4,12 +4,28 @@ declare(strict_types=1);
 
 namespace Descarga\Subscriber\Input;
 
+use OpenApi\Annotations as OA;
+
+/**
+ * @OA\Schema(
+ *     required={"firstName", "lastName", "email"},
+ * )
+ */
 class SubscriberCreateInput
 {
+    /**
+     * @OA\Property(example="Alef")
+     */
     public mixed $firstName;
 
+    /**
+     * @OA\Property(example="Castelo")
+     */
     public mixed $lastName;
 
+    /**
+     * @OA\Property(example="alefaraujocastelo@gmail.com")
+     */
     public mixed $email;
 
     public function __construct(

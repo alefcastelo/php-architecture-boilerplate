@@ -8,7 +8,20 @@ use Descarga\Subscriber\Input\SubscriberListFiltersInput;
 use Descarga\Subscriber\UseCase\SubscriberList;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Get(
+ *     path="/subscribers",
+ *     summary="Subscriber List",
+ *     tags={"Subscriber"},
+ *     @OA\Response(
+ *         response=200,
+ *         description="Created",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberListOutput"),
+ *     )
+ * )
+ */
 class SubscriberListAction
 {
     public function __construct(

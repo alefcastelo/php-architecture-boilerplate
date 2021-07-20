@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+$openapi = \OpenApi\Generator::scan([dirname(__DIR__).'/src/']);
+echo $openapi->toYaml();

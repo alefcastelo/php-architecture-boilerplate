@@ -287,5 +287,8 @@
     },
     "webonyx/graphql-php": {
         "version": "v14.9.0"
+    },
+    "zircote/swagger-php": {
+        "version": "3.2.3"
     }
 }

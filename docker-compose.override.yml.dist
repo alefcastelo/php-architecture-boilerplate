@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  api:
+    volumes:
+      - .:/application:delegated
+
+  nginx:
+    container_name: nginx
+    volumes:
+      - .:/application:delegated
+
+  database:
+    container_name: database
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+  swagger:
+    build:
+      context: .
+      dockerfile: docker/swagger/Dockerfile
+    container_name: swagger
+    image: local/swagger:latest
+    volumes:
+      - ./docs/openapi/:/application/openapi:delegated
+    ports:
+      - 8001:3000
+
+volumes:
+  database-data:
+    external: true

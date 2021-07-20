@@ -8,7 +8,20 @@ use Descarga\Subscriber\Output\Mapper\SubscriberFullOutputMapper;
 use Descarga\Subscriber\SubscriberRepositoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Get(
+ *     path="/subscribers/{id}",
+ *     summary="Subscriber Retrieve",
+ *     tags={"Subscriber"},
+ *     @OA\Response(
+ *         response=200,
+ *         description="Ok",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberFullOutput"),
+ *     )
+ * )
+ */
 class SubscriberRetrieveAction
 {
     public function __construct(

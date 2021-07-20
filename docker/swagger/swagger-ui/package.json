@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "",
+  "repository": "git@github.com:phparch/api.git",
+  "author": "Alef Castelo <alefaraujocastelo@gmail.com>",
+  "license": "proprietary",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
+  },
+  "scripts": {
+    "dev": "yarn nodemon -e yaml server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

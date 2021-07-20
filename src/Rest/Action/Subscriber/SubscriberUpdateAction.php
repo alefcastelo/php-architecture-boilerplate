@@ -8,7 +8,24 @@ use Descarga\Subscriber\Input\SubscriberUpdateInput;
 use Descarga\Subscriber\UseCase\SubscriberUpdate;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Put(
+ *     path="/subscribers/{id}",
+ *     summary="Subscriber Update",
+ *     tags={"Subscriber"},
+ *     @OA\RequestBody(
+ *         description="Input data format",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberUpdateInput"),
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Updated",
+ *         @OA\JsonContent(ref="#/components/schemas/SubscriberFullOutput"),
+ *     )
+ * )
+ */
 class SubscriberUpdateAction
 {
     public function __construct(
