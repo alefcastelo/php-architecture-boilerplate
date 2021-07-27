@@ -8,7 +8,7 @@ RUN apk update && apk add --update --no-cache \
     php8-pdo \
     php8-pdo_pgsql
 
-RUN pecl install xdebug
+RUN pecl install xdebug grpc protobuf
 
 RUN docker-php-ext-enable xdebug
 

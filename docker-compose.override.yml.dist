@@ -15,6 +15,9 @@ services:
     volumes:
       - database-data:/var/lib/postgresql/data
 
+  redis:
+    container_name: redis
+
   swagger:
     build:
       context: .

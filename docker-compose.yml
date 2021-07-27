@@ -8,6 +8,7 @@ services:
     image: local/api:latest
     links:
       - database
+      - redis
     env_file:
       - .env
 
@@ -22,6 +23,9 @@ services:
       - api
     depends_on:
       - api
+
+  redis:
+    image: redis:alpine
 
   database:
     image: postgres:9.6

@@ -7,14 +7,16 @@ namespace Descarga\GraphQL\Resolver\Query\Subscriber;
 use Descarga\GraphQL\Context;
 use Descarga\GraphQL\Resolver;
 use Descarga\Subscriber\Input\SubscriberListFiltersInput;
-use Descarga\Subscriber\Output\Mapper\SubscriberListOutputMapper;
 use Descarga\Subscriber\SubscriberRepositoryInterface;
+use Descarga\Subscriber\UseCase\SubscriberList;
+use Predis\Client as CacheService;
 
 class SubscriberListResolver implements Resolver
 {
     public function __construct(
         protected SubscriberRepositoryInterface $subscriberRepository,
-        protected SubscriberListOutputMapper $subscriberListOutputMapper,
+        protected SubscriberList $subscriberList,
+        protected CacheService $cacheService
     ) {
     }
 
@@ -25,8 +27,14 @@ class SubscriberListResolver implements Resolver
             'limit' => $args['input']['limit'] ?? 10,
         ]);
 
-        $subscribers = $this->subscriberRepository->list($input);
+        $cacheResult = $this->cacheService->get(serialize($input));
+        if ($cacheResult) {
+            return json_decode($cacheResult, true);
+        }
 
-        return (array) $this->subscriberListOutputMapper->map($subscribers);
+        $result = (array) $this->subscriberList->handler($input);
+        $this->cacheService->set(serialize($input), json_encode($result));
+
+        return $result;
     }
 }

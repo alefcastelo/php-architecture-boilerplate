@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cfabdd486122da0b3ef24f12b1d5001",
+    "content-hash": "40b10ed774a4c4c9316fbe4308f49744",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1519,6 +1519,95 @@
             "time": "2021-05-22T16:11:15+00:00"
         },
         {
+            "name": "google/protobuf",
+            "version": "v3.17.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protocolbuffers/protobuf-php.git",
+                "reference": "ae9282cf11dd2933b7e71a611f9590f07d53d3f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/ae9282cf11dd2933b7e71a611f9590f07d53d3f3",
+                "reference": "ae9282cf11dd2933b7e71a611f9590f07d53d3f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Need to support JSON deserialization"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Google\\Protobuf\\": "src/Google/Protobuf",
+                    "GPBMetadata\\Google\\Protobuf\\": "src/GPBMetadata/Google/Protobuf"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "proto library for PHP",
+            "homepage": "https://developers.google.com/protocol-buffers/",
+            "keywords": [
+                "proto"
+            ],
+            "support": {
+                "issues": "https://github.com/protocolbuffers/protobuf-php/issues",
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.17.3"
+            },
+            "time": "2021-06-08T14:59:41+00:00"
+        },
+        {
+            "name": "grpc/grpc",
+            "version": "1.39.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grpc/grpc-php.git",
+                "reference": "101485614283d1ecb6b2ad1d5b95dc82495931db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/101485614283d1ecb6b2ad1d5b95dc82495931db",
+                "reference": "101485614283d1ecb6b2ad1d5b95dc82495931db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "google/auth": "^v1.3.0"
+            },
+            "suggest": {
+                "ext-protobuf": "For better performance, install the protobuf C extension.",
+                "google/protobuf": "To get started using grpc quickly, install the native protobuf library."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Grpc\\": "src/lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "gRPC library for PHP",
+            "homepage": "https://grpc.io",
+            "keywords": [
+                "rpc"
+            ],
+            "support": {
+                "source": "https://github.com/grpc/grpc-php/tree/v1.39.0"
+            },
+            "time": "2021-07-23T23:04:53+00:00"
+        },
+        {
             "name": "laminas/laminas-code",
             "version": "4.4.2",
             "source": {
@@ -1640,6 +1729,78 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.11.0"
             },
             "time": "2021-07-03T13:36:55+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/predis/predis.git",
+                "reference": "54775a02954ac425daef0c3c717665e968b5fc84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/predis/predis/zipball/54775a02954ac425daef0c3c717665e968b5fc84",
+                "reference": "54775a02954ac425daef0c3c717665e968b5fc84",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0 || ~9.4.4"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net",
+                    "role": "Creator & Maintainer"
+                },
+                {
+                    "name": "Till Krüss",
+                    "homepage": "https://till.im",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A flexible and feature-complete Redis client for PHP.",
+            "homepage": "http://github.com/predis/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "support": {
+                "issues": "https://github.com/predis/predis/issues",
+                "source": "https://github.com/predis/predis/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-19T16:27:37+00:00"
         },
         {
             "name": "psr/cache",
@@ -5224,12 +5385,15 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "predis/predis": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.0",
         "ext-ctype": "*",
+        "ext-grpc": "^1.39",
         "ext-iconv": "*"
     },
     "platform-dev": [],

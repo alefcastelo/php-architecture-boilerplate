@@ -7,6 +7,7 @@ services:
         autoconfigure: true
         bind:
             $graphqlSchemaPath: '%env(resolve:GRAPHQL_SCHEMA_PATH)%'
+            $redisConnectionDns: '%env(resolve:REDIS_CONNECTION_DNS)%'
 
     Descarga\:
         resource: '../src/'
@@ -21,3 +22,7 @@ services:
     Descarga\GraphQL\:
         resource: '../src/GraphQL/'
         tags: [ 'graphql.resolvers' ]
+
+    Predis\Client:
+        arguments:
+            - '$redisConnectionDns'
