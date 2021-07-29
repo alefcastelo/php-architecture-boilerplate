@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+
+use Descarga\Kernel;
+
+if (!is_file(dirname(__DIR__).'/vendor/autoload_runtime.php')) {
+    throw new LogicException('Symfony Runtime is missing. Try running "composer require symfony/runtime".');
+}
+
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+
+return function (array $context) {
+
+    function getEventHandler(object $event): string {
+        return sprintf('%s\%s\%s', 'Descarga\\EventHandlerZMQ', $event->namespace, $event->action);
+    }
+
+    $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+    $kernel->boot();
+
+    $container = $kernel->getContainer();
+
+    $context = new ZMQContext(1);
+
+    $responder = new ZMQSocket($context, ZMQ::SOCKET_REP);
+    $responder->bind(sprintf('tcp://*:%s', $_ENV['ZMQ_PORT']));
+
+    while (true) {
+        $request = $responder->recv();
+        $event = json_decode($request);
+
+        $eventHandlerClass = getEventHandler($event);
+
+        if (!$container->has($eventHandlerClass)) {
+            $responder->send(json_encode(['message' => 'event handler not found']));
+        }
+
+        $eventHandler = $container->get($eventHandlerClass);
+
+        if (!is_callable($eventHandler)) {
+            $responder->send(json_encode(['message' => 'event handler is not a callable']));
+        }
+
+        $output = $eventHandler(json_decode($event->payload, true));
+
+        $responder->send(json_encode($output));
+    }
+};

@@ -27,8 +27,10 @@ services:
         arguments:
             - '$redisConnectionDns'
 
-    Descarga\gRPC\Subscriber\SubscriberCreateRPC:
+    Descarga\gRPC\:
+        resource: '../src/gRPC/'
         public: true
 
-    Descarga\gRPC\Subscriber\SubscriberRetrieveRPC:
+    Descarga\EventHandlerZMQ\:
+        resource: '../src/EventHandlerZMQ/'
         public: true
