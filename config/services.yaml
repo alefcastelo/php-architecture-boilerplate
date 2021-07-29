@@ -26,3 +26,9 @@ services:
     Predis\Client:
         arguments:
             - '$redisConnectionDns'
+
+    Descarga\gRPC\Subscriber\SubscriberCreateRPC:
+        public: true
+
+    Descarga\gRPC\Subscriber\SubscriberRetrieveRPC:
+        public: true

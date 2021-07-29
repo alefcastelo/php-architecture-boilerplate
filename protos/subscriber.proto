@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option php_namespace = "Descarga\\gRPC\\Generated";
+
+service Subscriber {
+  rpc SubscriberCreate (SubscriberCreateRequest) returns (SubscriberOutputReply) {}
+  rpc SubscriberRetrieve (SubscriberRetrieveRequest) returns (SubscriberOutputReply) {}
+}
+
+message SubscriberRetrieveRequest {
+  int32 id = 1;
+}
+
+message SubscriberCreateRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+}
+
+message SubscriberOutputReply {
+  int32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+}

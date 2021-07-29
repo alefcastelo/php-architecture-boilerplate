@@ -9,6 +9,7 @@
         "ext-grpc": "^1.39",
         "ext-iconv": "*",
         "ext-protobuf": "*",
+        "ext-swoole": "*",
         "composer/package-versions-deprecated": "1.11.99.2",
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.1",
@@ -35,7 +36,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Descarga\\": "src/"
+            "Descarga\\": "src/",
+            "Descarga\\gRPC\\Generated\\": "stubs/Descarga/gRPC/Generated",
+            "GPBMetadata\\": "stubs/GPBMetadata/"
         }
     },
     "autoload-dev": {

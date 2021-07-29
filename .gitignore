@@ -5,6 +5,7 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
+/stubs/
 /vendor/
 /.php-cs-fixer.php
 /.php-cs-fixer.cache

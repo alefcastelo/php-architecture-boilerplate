@@ -1,0 +1,106 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Descarga\gRPC\Parser;
+use Swoole\HTTP\Server;
+use Swoole\Http\Request;
+use Swoole\Http\Response;
+use Descarga\Kernel;
+
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+
+return function (array $context) {
+
+    function mapRequestRPC ($rpcClass): string|null {
+        $map = [
+            \Descarga\gRPC\Subscriber\SubscriberCreateRPC::class => \Descarga\gRPC\Generated\SubscriberCreateRequest::class,
+            \Descarga\gRPC\Subscriber\SubscriberRetrieveRPC::class => \Descarga\gRPC\Generated\SubscriberRetrieveRequest::class,
+        ];
+
+        if (array_key_exists($rpcClass, $map)) {
+            return $map[$rpcClass];
+        }
+
+        return null;
+    }
+
+    function getRPCHandler(Request $request): string {
+        $route = str_replace('/', '\\', $request->server['request_uri']);
+        return sprintf('%s%s%s', 'Descarga\\gRPC', $route, 'RPC');
+    }
+
+
+    function notFoundResponse(Response $response): void {
+        $response->trailer('grpc-status', (string) Grpc\STATUS_NOT_FOUND);
+        $response->trailer('grpc-message', 'rpc not found');
+        $response->end();
+    }
+
+    $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+    $kernel->boot();
+    $container = $kernel->getContainer();
+
+    $server = new Server('0.0.0.0', (int) $_ENV['GRPC_PORT'], SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
+
+    $server->set([
+        'log_level' => SWOOLE_LOG_INFO,
+        'trace_flags' => 0,
+        'worker_num' => 1,
+        'open_http2_protocol' => true,
+    ]);
+
+    $server->on('Request',
+        callback: function (Request $request, Response $response) use($container): void {
+        print sprintf('[%s] %s', $request->server['request_method'], $request->server['request_uri']) . PHP_EOL;
+
+        $response->header('content-type', 'application/grpc');
+        $response->header('trailer', 'grpc-status, grpc-message');
+
+
+        $rpcHandlerClass = getRPCHandler($request);
+        $rpcRequestHandlerClass = mapRequestRPC($rpcHandlerClass);
+
+        if (null === $rpcHandlerClass || !$rpcRequestHandlerClass) {
+            print sprintf('[debug] %s not found', $rpcHandlerClass) . PHP_EOL;
+            notFoundResponse($response);
+
+            return;
+        }
+
+        if (!$container->has($rpcHandlerClass)) {
+            print '[debug] Service not found' . PHP_EOL;
+            notFoundResponse($response);
+
+            return;
+        }
+
+        $response->header('content-type', 'application/grpc');
+        $response->header('trailer', 'grpc-status, grpc-message');
+
+        $rpcHandler = $container->get($rpcHandlerClass);
+
+        if (!is_callable($rpcHandler)) {
+            notFoundResponse($response);
+        }
+
+        $grpcRequest = new $rpcRequestHandlerClass();
+        $grpcRequest->mergeFromString(Parser::unpack($request->rawContent()));
+
+        $grpcResponse = $rpcHandler($grpcRequest);
+
+        $trailer = [
+            'grpc-status' => (string) Grpc\STATUS_OK,
+            'grpc-message' => 'success',
+        ];
+
+        foreach ($trailer as $trailer_name => $trailer_value) {
+            $response->trailer($trailer_name, $trailer_value);
+        }
+
+        $response->end(Parser::serializeMessage($grpcResponse));
+    });
+
+    $server->start();
+};
