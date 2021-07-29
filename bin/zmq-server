@@ -12,7 +12,7 @@ require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 return function (array $context) {
 
     function getEventHandler(object $event): string {
-        return sprintf('%s\%s\%s', 'Descarga\\EventHandlerZMQ', $event->namespace, $event->action);
+        return sprintf('%s\%s\%s', 'Descarga\\ZMQ', $event->namespace, $event->action);
     }
 
     $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Descarga\EventHandlerZMQ\Subscriber;
+namespace Descarga\ZMQ\Subscriber;
 
 use Descarga\Subscriber\Input\SubscriberCreateInput;
 use Descarga\Subscriber\Output\SubscriberFullOutput;

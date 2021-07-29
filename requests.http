@@ -1,8 +1,8 @@
 ### Subscriber Retrieve
-GET http://localhost:8000/subscriber/4
+GET http://localhost:8000/subscribers/1
 
 ### Subscriber Create
-POST http://localhost:8000/subscriber
+POST http://localhost:8000/subscribers
 
 {
   "firstName": "Alef",
@@ -11,15 +11,15 @@ POST http://localhost:8000/subscriber
 }
 
 ### Subscriber Update
-PUT http://localhost:8000/subscriber/4
+PUT http://localhost:8000/subscribers/4
 
 {
   "firstName": "Alef",
-  "lastName": "Araujo"
+  "lastName": "Castelo"
 }
 
 ### Subscriber List
-GET http://localhost:8000/subscriber
+GET http://localhost:8000/subscribers
 
 
 ### GraphQL Healthcheck Resolver
@@ -37,35 +37,6 @@ Content-Type: application/graphql
 {
   "query": "{\nsubscriberRetrieve(id: 3) {\nid\nfirstName\nlastName\nemail\n}\n}"
 }
-
-### GraphQL Subscriber List Resolver
-POST http://localhost:8000/graphql
-Content-Type: application/graphql
-
-{
-  "query": "query SubscriberList($input: SubscriberListFiltersInput){\nsubscriberList(input: $input) {\nitems {\nid\nfirstName\nlastName\n}\n}\n}",
-  "variables": {
-    "input": {
-      "page": 1,
-      "limit": 2
-    }
-  }
-}
-
-### GraphQL Subscriber List Resolver
-POST http://localhost:8000/graphql
-Content-Type: application/graphql
-
-{
-  "query": "query SubscriberList($input: SubscriberListFiltersInput){\nsubscriberList(input: $input) {\nitems {\nid\nlastName\n}\n}\n}",
-  "variables": {
-    "input": {
-      "page": 1,
-      "limit": 2
-    }
-  }
-}
-
 ### GraphQL Subscriber Create Resolver
 POST http://localhost:8000/graphql
 Content-Type: application/graphql
@@ -92,6 +63,20 @@ Content-Type: application/graphql
     "input": {
       "firstName": "Alef",
       "lastName": "Araujo"
+    }
+  }
+}
+
+### GraphQL Subscriber List Resolver
+POST http://localhost:8000/graphql
+Content-Type: application/graphql
+
+{
+  "query": "query SubscriberList($input: SubscriberListFiltersInput){\nsubscriberList(input: $input) {\nitems {\nid\nfirstName\nlastName\n}\n}\n}",
+  "variables": {
+    "input": {
+      "page": 1,
+      "limit": 2
     }
   }
 }

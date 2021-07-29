@@ -31,6 +31,6 @@ services:
         resource: '../src/gRPC/'
         public: true
 
-    Descarga\EventHandlerZMQ\:
-        resource: '../src/EventHandlerZMQ/'
+    Descarga\ZMQ\:
+        resource: '../src/ZMQ/'
         public: true
